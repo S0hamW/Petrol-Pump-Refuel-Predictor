@@ -1,0 +1,12 @@
+# Ignore all large data files by default
+*.csv
+*.xlsx
+*.pkl
+
+# Explicitly allow specific core datasets and metadata needed for the app
+!.gitignore
+!README.md
+!petrol_pump_2011_2025.xlsx
+!selected_features.csv
+!model_features.json
+!model_metrics.json

@@ -1,0 +1,9 @@
+# Streamlit specific
+.streamlit/secrets.toml
+.streamlit/credentials.toml
+
+# Local cache & Python artifacts
+__pycache__/
+*.pyc
+*.pyo
+*.pyd

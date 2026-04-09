@@ -1,0 +1,7 @@
+# Ignore Jupyter auto-save checkpoints to keep git history clean
+.ipynb_checkpoints/
+*/.ipynb_checkpoints/
+**/.ipynb_checkpoints/
+
+# Ignore Jupyter UI configuration
+.jupyter/
