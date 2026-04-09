@@ -1,49 +1,49 @@
 """
-FuelIQ Theme System — v4 (Black+Grey dark, clean light)
+FuelIQ Theme System — v5 (Dark, solid colors, no gradients on cards)
 """
 import streamlit as st
 
 
 DARK_THEME = {
-    "bg":           "#080808",
-    "sidebar_bg":   "#0e0e0e",
-    "card_bg":      "#111111",
-    "card_bg2":     "#161616",
-    "border":       "#242424",
-    "border2":      "#2e2e2e",
-    "accent":       "#f59e0b",   # amber / gold
-    "accent2":      "#22c55e",   # green
-    "accent3":      "#6366f1",   # indigo
-    "text_primary": "#f5f5f5",
-    "text_secondary":"#737373",
-    "success":      "#22c55e",
-    "danger":       "#ef4444",
-    "warning":      "#f97316",
-    "plot_paper":   "#111111",
-    "plot_bg":      "#0d0d0d",
-    "grid_color":   "#1f1f1f",
-    "template":     "plotly_dark",
+    "bg":            "#0E1117",
+    "sidebar_bg":    "#0a0d13",
+    "card_bg":       "#161b27",
+    "card_bg2":      "#1c2233",
+    "border":        "#272f43",
+    "border2":       "#323d57",
+    "accent":        "#f59e0b",   # amber / gold
+    "accent2":       "#22c55e",   # green
+    "accent3":       "#6366f1",   # indigo
+    "text_primary":  "#e8eaf0",
+    "text_secondary": "#6b7a99",
+    "success":       "#22c55e",
+    "danger":        "#ef4444",
+    "warning":       "#f97316",
+    "plot_paper":    "#161b27",
+    "plot_bg":       "#0e1117",
+    "grid_color":    "#1e2536",
+    "template":      "plotly_dark",
 }
 
 LIGHT_THEME = {
-    "bg":           "#f4f4f4",
-    "sidebar_bg":   "#ffffff",
-    "card_bg":      "#ffffff",
-    "card_bg2":     "#fafafa",
-    "border":       "#e5e5e5",
-    "border2":      "#d4d4d4",
-    "accent":       "#d97706",
-    "accent2":      "#16a34a",
-    "accent3":      "#4f46e5",
-    "text_primary": "#111111",
-    "text_secondary":"#737373",
-    "success":      "#16a34a",
-    "danger":       "#dc2626",
-    "warning":      "#ea580c",
-    "plot_paper":   "#ffffff",
-    "plot_bg":      "#fafafa",
-    "grid_color":   "#e5e5e5",
-    "template":     "plotly_white",
+    "bg":            "#f4f6fb",
+    "sidebar_bg":    "#ffffff",
+    "card_bg":       "#ffffff",
+    "card_bg2":      "#f8f9fc",
+    "border":        "#e2e8f0",
+    "border2":       "#cbd5e1",
+    "accent":        "#d97706",
+    "accent2":       "#16a34a",
+    "accent3":       "#4f46e5",
+    "text_primary":  "#0f172a",
+    "text_secondary": "#64748b",
+    "success":       "#16a34a",
+    "danger":        "#dc2626",
+    "warning":       "#ea580c",
+    "plot_paper":    "#ffffff",
+    "plot_bg":       "#f8f9fc",
+    "grid_color":    "#e2e8f0",
+    "template":      "plotly_white",
 }
 
 
@@ -56,6 +56,12 @@ def apply_theme(dark: bool):
     st.markdown(f"""
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+
+/* ── Hide Streamlit default page navigation ── */
+[data-testid="stSidebarNav"],
+section[data-testid="stSidebarNav"] {{
+    display: none !important;
+}}
 
 /* ── Root ── */
 html, body, [data-testid="stApp"] {{
@@ -71,39 +77,39 @@ html, body, [data-testid="stApp"] {{
     border-right: 1px solid {t['border']} !important;
 }}
 
-/* ── Main content padding ── */
+/* ── Main content ── */
 .main .block-container {{
     padding: 1.5rem 2rem 2rem 2rem !important;
     max-width: 100% !important;
 }}
 
-/* ══════════════════════════════════════
+/* ══════════════════════════════
    BRAND HEADER
-════════════════════════════════════════ */
+══════════════════════════════ */
 .brand-wrap {{
     padding: 20px 18px 14px 18px;
     border-bottom: 1px solid {t['border']};
     margin-bottom: 12px;
 }}
 .brand-title {{
-    font-size: 1.4rem;
+    font-size: 1.35rem;
     font-weight: 900;
     color: {t['accent']};
     letter-spacing: -0.5px;
     line-height: 1.15;
 }}
 .brand-sub {{
-    font-size: 0.58rem;
+    font-size: 0.56rem;
     color: {t['text_secondary']};
-    margin-top: 2px;
+    margin-top: 3px;
     font-weight: 600;
     text-transform: uppercase;
-    letter-spacing: 1.2px;
+    letter-spacing: 1.3px;
 }}
 
-/* Nav labels */
+/* ── Nav labels ── */
 .nav-label {{
-    font-size: 0.55rem;
+    font-size: 0.54rem;
     font-weight: 800;
     color: {t['text_secondary']};
     letter-spacing: 2px;
@@ -111,17 +117,17 @@ html, body, [data-testid="stApp"] {{
     margin: 16px 0 4px 8px;
 }}
 
-/* ══════════════════════════════════════
+/* ══════════════════════════════
    NAV BUTTONS
-════════════════════════════════════════ */
+══════════════════════════════ */
 [data-testid="stSidebar"] button {{
     background: transparent !important;
     border: none !important;
     color: {t['text_secondary']} !important;
     text-align: left !important;
-    font-size: 0.83rem !important;
+    font-size: 0.84rem !important;
     font-weight: 500 !important;
-    padding: 8px 14px !important;
+    padding: 9px 14px !important;
     border-radius: 8px !important;
     transition: all 0.12s ease !important;
     margin-bottom: 2px !important;
@@ -138,42 +144,42 @@ html, body, [data-testid="stApp"] {{
     border-left: 3px solid {t['accent']} !important;
 }}
 
-/* ══════════════════════════════════════
+/* ══════════════════════════════
    PAGE HEADER
-════════════════════════════════════════ */
+══════════════════════════════ */
 .page-header {{
     display: flex;
     align-items: center;
     gap: 14px;
-    margin-bottom: 20px;
+    margin-bottom: 22px;
     padding-bottom: 16px;
     border-bottom: 1px solid {t['border']};
 }}
 .page-icon {{
-    width: 42px; height: 42px;
-    background: {t['accent']}15;
-    border: 1px solid {t['accent']}28;
+    width: 44px; height: 44px;
+    background: {t['accent']}18;
+    border: 1px solid {t['accent']}30;
     border-radius: 10px;
     display: flex; align-items: center; justify-content: center;
-    font-size: 1.25rem;
+    font-size: 1.3rem;
     flex-shrink: 0;
 }}
 .page-title {{
-    font-size: 1.45rem;
+    font-size: 1.5rem;
     font-weight: 800;
     color: {t['text_primary']};
-    letter-spacing: -0.4px;
+    letter-spacing: -0.5px;
     line-height: 1.2;
 }}
 .page-sub {{
-    font-size: 0.78rem;
+    font-size: 0.79rem;
     color: {t['text_secondary']};
     margin-top: 3px;
 }}
 
-/* ══════════════════════════════════════
+/* ══════════════════════════════
    STAT CARDS
-════════════════════════════════════════ */
+══════════════════════════════ */
 .stat-row {{
     display: grid;
     grid-template-columns: repeat(4, 1fr);
@@ -189,18 +195,10 @@ html, body, [data-testid="stApp"] {{
     position: relative;
     overflow: hidden;
 }}
-.stat-card::after {{
-    content: '';
-    position: absolute;
-    bottom: 0; left: 0; right: 0;
-    height: 2px;
-    background: linear-gradient(90deg, {t['accent']}, {t['accent2']});
-    transform: scaleX(0);
-    transform-origin: left;
-    transition: transform .2s ease;
+.stat-card:hover {{
+    border-color: {t['border2']};
+    transform: translateY(-2px);
 }}
-.stat-card:hover::after {{ transform: scaleX(1); }}
-.stat-card:hover {{ border-color: {t['border2']}; transform: translateY(-2px); }}
 .stat-label {{
     font-size: 0.6rem;
     font-weight: 700;
@@ -210,26 +208,26 @@ html, body, [data-testid="stApp"] {{
     margin-bottom: 8px;
 }}
 .stat-value {{
-    font-size: 1.6rem;
+    font-size: 1.65rem;
     font-weight: 800;
     color: {t['text_primary']};
     line-height: 1.1;
     letter-spacing: -0.5px;
 }}
-.stat-delta {{ font-size: 0.72rem; font-weight: 600; margin-top: 4px; }}
+.stat-delta {{ font-size: 0.72rem; font-weight: 600; margin-top: 5px; }}
 .delta-up   {{ color: {t['success']}; }}
 .delta-warn {{ color: {t['warning']}; }}
 .delta-down {{ color: {t['danger']}; }}
 .delta-mute {{ color: {t['text_secondary']}; }}
 
-/* ══════════════════════════════════════
-   PREDICTION CARD
-════════════════════════════════════════ */
+/* ══════════════════════════════
+   PREDICTION CARD — solid, no gradient
+══════════════════════════════ */
 .pred-card {{
-    background: linear-gradient(135deg, {t['accent2']}10 0%, {t['card_bg']} 60%);
-    border: 1px solid {t['accent2']}35;
+    background: {t['card_bg']};
+    border: 1px solid {t['accent2']}45;
     border-radius: 14px;
-    padding: 22px 24px;
+    padding: 24px 26px;
     margin-bottom: 16px;
     position: relative;
     overflow: hidden;
@@ -237,7 +235,7 @@ html, body, [data-testid="stApp"] {{
 .pred-ai-badge {{
     position: absolute; top: 16px; right: 18px;
     background: {t['accent2']}20;
-    border: 1px solid {t['accent2']}45;
+    border: 1px solid {t['accent2']}50;
     color: {t['accent2']};
     padding: 3px 11px;
     border-radius: 20px;
@@ -248,25 +246,25 @@ html, body, [data-testid="stApp"] {{
 .pred-header {{
     font-size: 0.6rem;
     font-weight: 800;
-    letter-spacing: 2px;
+    letter-spacing: 2.5px;
     text-transform: uppercase;
     color: {t['accent']};
-    margin-bottom: 16px;
+    margin-bottom: 18px;
 }}
 .pred-grid {{
     display: grid;
-    grid-template-columns: repeat(3,1fr);
+    grid-template-columns: repeat(3, 1fr);
     gap: 20px;
-    margin-bottom: 18px;
+    margin-bottom: 20px;
 }}
 .pred-col-label {{
     font-size: 0.68rem;
     color: {t['text_secondary']};
     font-weight: 500;
-    margin-bottom: 4px;
+    margin-bottom: 5px;
 }}
 .pred-col-value {{
-    font-size: 1.75rem;
+    font-size: 1.85rem;
     font-weight: 800;
     line-height: 1.1;
     letter-spacing: -0.5px;
@@ -274,17 +272,17 @@ html, body, [data-testid="stApp"] {{
 .pred-col-sub {{
     font-size: 0.68rem;
     color: {t['text_secondary']};
-    margin-top: 3px;
+    margin-top: 4px;
 }}
 .conf-bar-label {{
     display: flex;
     justify-content: space-between;
     font-size: 0.72rem;
     color: {t['text_secondary']};
-    margin-bottom: 5px;
+    margin-bottom: 6px;
 }}
 .conf-bar-track {{
-    height: 5px;
+    height: 6px;
     background: {t['border']};
     border-radius: 4px;
     overflow: hidden;
@@ -292,12 +290,12 @@ html, body, [data-testid="stApp"] {{
 .conf-bar-fill {{
     height: 100%;
     border-radius: 4px;
-    background: linear-gradient(90deg, {t['accent2']}, {t['accent']});
+    background: {t['accent']};
 }}
 
-/* ══════════════════════════════════════
+/* ══════════════════════════════
    GENERIC CARDS
-════════════════════════════════════════ */
+══════════════════════════════ */
 .fiq-card {{
     background: {t['card_bg']};
     border: 1px solid {t['border']};
@@ -306,8 +304,8 @@ html, body, [data-testid="stApp"] {{
     margin-bottom: 14px;
 }}
 .fiq-card-accent {{
-    background: linear-gradient(135deg, {t['accent']}0c 0%, {t['card_bg']} 70%);
-    border: 1px solid {t['accent']}28;
+    background: {t['card_bg']};
+    border: 1px solid {t['accent']}30;
     border-radius: 12px;
     padding: 20px;
     margin-bottom: 14px;
@@ -327,9 +325,9 @@ html, body, [data-testid="stApp"] {{
     margin-bottom: 4px;
 }}
 
-/* ══════════════════════════════════════
+/* ══════════════════════════════
    WHY CARD
-════════════════════════════════════════ */
+══════════════════════════════ */
 .why-card {{
     background: {t['card_bg']};
     border: 1px solid {t['border']};
@@ -342,7 +340,7 @@ html, body, [data-testid="stApp"] {{
     gap: 12px;
     padding: 11px 0;
     border-bottom: 1px solid {t['border']};
-    line-height: 1.55;
+    line-height: 1.6;
     font-size: 0.83rem;
     color: {t['text_secondary']};
 }}
@@ -354,18 +352,18 @@ html, body, [data-testid="stApp"] {{
     margin-top: 6px;
 }}
 
-/* ══════════════════════════════════════
+/* ══════════════════════════════
    NO DATA STATE
-════════════════════════════════════════ */
+══════════════════════════════ */
 .no-data-wrap {{
     text-align: center;
-    padding: 100px 20px;
+    padding: 80px 20px;
 }}
 .no-data-icon   {{ font-size: 4rem; display: block; margin-bottom: 14px; }}
 .no-data-badge  {{
     display: inline-block;
-    background: {t['accent']}15;
-    border: 1px solid {t['accent']}30;
+    background: {t['accent']}18;
+    border: 1px solid {t['accent']}35;
     color: {t['accent']};
     padding: 4px 14px;
     border-radius: 20px;
@@ -375,7 +373,7 @@ html, body, [data-testid="stApp"] {{
     letter-spacing: 0.5px;
 }}
 .no-data-title {{
-    font-size: 1.15rem;
+    font-size: 1.2rem;
     font-weight: 800;
     color: {t['text_primary']};
     margin-bottom: 10px;
@@ -400,9 +398,9 @@ html, body, [data-testid="stApp"] {{
     letter-spacing: 0.2px;
 }}
 
-/* ══════════════════════════════════════
+/* ══════════════════════════════
    FEATURE ROWS
-════════════════════════════════════════ */
+══════════════════════════════ */
 .feat-row {{
     background: {t['card_bg']};
     border: 1px solid {t['border']};
@@ -415,17 +413,6 @@ html, body, [data-testid="stApp"] {{
     transition: border-color .15s;
 }}
 .feat-row:hover {{ border-color: {t['accent']}35; }}
-.feat-badge {{
-    background: {t['accent']}18;
-    color: {t['accent']};
-    border-radius: 7px;
-    padding: 3px 9px;
-    font-size: 0.7rem;
-    font-weight: 700;
-    white-space: nowrap;
-    flex-shrink: 0;
-    margin-top: 2px;
-}}
 .feat-name {{
     font-size: 0.88rem;
     font-weight: 700;
@@ -444,23 +431,23 @@ html, body, [data-testid="stApp"] {{
     line-height: 1.5;
 }}
 
-/* ══════════════════════════════════════
+/* ══════════════════════════════
    METRIC CARDS (Model Insights)
-════════════════════════════════════════ */
+══════════════════════════════ */
 .metric-card {{
     background: {t['card_bg']};
     border: 1px solid {t['border']};
     border-radius: 12px;
-    padding: 22px 18px;
+    padding: 24px 18px;
     text-align: center;
     transition: transform .15s, box-shadow .15s;
 }}
 .metric-card:hover {{
     transform: translateY(-2px);
-    box-shadow: 0 8px 24px rgba(0,0,0,0.35);
+    box-shadow: 0 8px 24px rgba(0,0,0,0.3);
 }}
 .metric-value {{
-    font-size: 2.4rem;
+    font-size: 2.5rem;
     font-weight: 900;
     color: {t['accent']};
     line-height: 1.1;
@@ -481,9 +468,9 @@ html, body, [data-testid="stApp"] {{
     font-weight: 500;
 }}
 
-/* ══════════════════════════════════════
+/* ══════════════════════════════
    STREAMLIT NATIVE OVERRIDES
-════════════════════════════════════════ */
+══════════════════════════════ */
 [data-testid="stMetric"] {{
     background: {t['card_bg']} !important;
     border: 1px solid {t['border']} !important;
@@ -507,7 +494,7 @@ div[data-testid="stProgress"] > div {{
     border-radius: 8px !important;
 }}
 div[data-testid="stProgress"] > div > div {{
-    background: linear-gradient(90deg, {t['accent2']}, {t['accent']}) !important;
+    background: {t['accent']} !important;
     border-radius: 8px !important;
 }}
 .stButton > button {{
@@ -557,6 +544,23 @@ div[data-testid="stProgress"] > div > div {{
     border-radius: 9px !important;
     color: {t['text_primary']} !important;
 }}
+.stTabs [data-baseweb="tab-list"] {{
+    background: {t['card_bg']} !important;
+    border-radius: 10px !important;
+    padding: 4px !important;
+    gap: 4px !important;
+}}
+.stTabs [data-baseweb="tab"] {{
+    border-radius: 8px !important;
+    font-size: 0.82rem !important;
+    font-weight: 600 !important;
+    color: {t['text_secondary']} !important;
+    background: transparent !important;
+}}
+.stTabs [aria-selected="true"] {{
+    background: {t['accent']}22 !important;
+    color: {t['accent']} !important;
+}}
 h1, h2, h3, h4, h5, h6 {{
     color: {t['text_primary']} !important;
     font-family: 'Inter', sans-serif !important;
@@ -589,8 +593,8 @@ def no_data_state(page_name: str = "this page", icon: str = "⛽"):
         <div class="no-data-icon">{icon}</div>
         <div class="no-data-title">No data loaded yet</div>
         <div class="no-data-sub">
-            <b style="color:{t['text_primary']}">{page_name}</b> requires petrol pump data to display insights.<br>
-            Head to <b style="color:{t['accent']}">Dashboard</b> and upload a CSV / XLSX file,
+            <b style="color:{t['text_primary']}">{page_name}</b> requires petrol pump data.<br>
+            Head to <b style="color:{t['accent']}">Dashboard</b> and upload a CSV / XLSX,
             or click <b style="color:{t['accent']}">Use Demo Data</b> to explore instantly.
         </div>
         <span class="no-data-cta">← Go to Dashboard</span>
