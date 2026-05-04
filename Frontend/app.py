@@ -1,12 +1,12 @@
 """
-FuelIQ — Main App Router (v5 Clean)
+PetroPredict — Main App Router (v5 Clean)
 """
 
 import streamlit as st
 
 # MUST be the absolute first Streamlit command
 st.set_page_config(
-    page_title="FuelIQ Dashboard",
+    page_title="PetroPredict Dashboard",
     page_icon="⛽",
     layout="wide",
     initial_sidebar_state="expanded"
@@ -37,7 +37,7 @@ def main():
     with st.sidebar:
         st.markdown(f"""
         <div class="brand-wrap">
-            <div class="brand-title">⛽ FuelIQ</div>
+            <div class="brand-title">⛽PetroPredict</div>
             <div class="brand-sub">Petrol Pump Refuel Predictor</div>
         </div>
         """, unsafe_allow_html=True)

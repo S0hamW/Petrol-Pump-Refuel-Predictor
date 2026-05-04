@@ -1,5 +1,5 @@
 """
-FuelIQ - PDF Report Generator  (v3 - rich content + notebook-style chart)
+PetroPredict - PDF Report Generator  (v3 - rich content + notebook-style chart)
 Requires: fpdf2  (pip install fpdf2)
           matplotlib (already in env)
 """
@@ -39,10 +39,8 @@ def _make_drawdown_png(pred: dict, df_sim: "pd.DataFrame | None") -> bytes:
     fresh (< 24 h old), otherwise generates a new one from pred / df_sim.
     """
     # ── 1. Try to use the pre-saved notebook output ───────────────────────────
-    saved = _dp("viz_next_refill_prediction.png")
-    if os.path.exists(saved):
-        with open(saved, "rb") as f:
-            return f.read()
+    # We remove the static file check to ensure a fresh chart is always generated 
+    # dynamically based on the current `pred` and `df_sim` data.
 
     # ── 2. Build a fresh chart from pred + sim_df ─────────────────────────────
     REFILL_THRESHOLD = 2000
@@ -181,7 +179,7 @@ def generate_pdf_report(prediction: dict,
                 self.set_text_color(*C_ACCENT)
                 self.set_font("Helvetica", "B", 22)
                 self.set_xy(0, 8)
-                self.cell(0, 12, "FuelIQ - Prediction Report", align="C",
+                self.cell(0, 12, "PetroPredict - Prediction Report", align="C",
                           new_x="LMARGIN", new_y="NEXT")
                 # Sub-title
                 self.set_font("Helvetica", "", 9)
@@ -197,7 +195,7 @@ def generate_pdf_report(prediction: dict,
                 self.set_font("Helvetica", "I", 8)
                 self.set_text_color(*C_MUTED)
                 self.cell(0, 8,
-                          f"FuelIQ AI Prediction Engine  |  Page {self.page_no()}",
+                          f"PetroPredict AI Prediction Engine  |  Page {self.page_no()}",
                           align="C")
 
         # ── helpers inside generate_pdf_report ────────────────────────────────
@@ -368,7 +366,7 @@ def generate_pdf_report(prediction: dict,
         rd = prediction.get("refill_date", "N/A")
         rd_str = rd.strftime("%d %b %Y") if hasattr(rd, "strftime") else str(rd)
         lines = [
-            "FuelIQ Prediction Report",
+            "PetroPredict Prediction Report",
             "=" * 44,
             f"Generated : {datetime.now().strftime('%d %b %Y %H:%M')}",
             "",

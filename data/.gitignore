@@ -3,6 +3,8 @@
 *.xlsx
 *.pkl
 
+.README.md
+
 # Explicitly allow specific core datasets and metadata needed for the app
 !.gitignore
 !README.md

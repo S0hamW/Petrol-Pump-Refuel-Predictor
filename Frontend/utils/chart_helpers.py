@@ -1,5 +1,5 @@
 """
-FuelIQ — Chart Helpers (v5 — correct full-dataset aggregations)
+PetroPredict — Chart Helpers (v5 — correct full-dataset aggregations)
 """
 
 import plotly.graph_objects as go

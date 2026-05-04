@@ -1,6 +1,6 @@
 # 📁 data/ — Datasets, Model Artifacts & Configuration
 
-This directory is the **central data store** for the FuelIQ Business Analytics platform. It holds everything the ML pipeline and Streamlit dashboard need to operate: raw historical spreadsheets, cleaned datasets, engineered feature manifests, a trained model binary, pre-computed performance metrics, seasonal configuration, and pre-rendered visualisation images.
+This directory is the **central data store** for the PetroPredict Business Analytics platform. It holds everything the ML pipeline and Streamlit dashboard need to operate: raw historical spreadsheets, cleaned datasets, engineered feature manifests, a trained model binary, pre-computed performance metrics, seasonal configuration, and pre-rendered visualisation images.
 
 ---
 

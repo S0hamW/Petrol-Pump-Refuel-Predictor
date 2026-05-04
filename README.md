@@ -1,4 +1,4 @@
-# ⛽ FuelIQ — Petrol Pump Business Analytics & Refuel Predictor
+# ⛽ PetroPredict — Petrol Pump Business Analytics & Refuel Predictor
 
 <div align="center">
 
@@ -18,7 +18,7 @@
 
 **FuelIQ** is a production-grade **business analytics and decision-support tool** designed for petrol pump owners and managers. It combines over **14 years of historical operational data** (2011–2025) with a trained **Random Forest Classifier** to accurately predict the next fuel refill date, track daily stock drawdown, and surface actionable business insights through an interactive Streamlit dashboard.
 
-The system addresses a real-world operational challenge: **petrol pump operators often run low on stock unexpectedly**, resulting in lost sales and customer dissatisfaction. FuelIQ solves this by:
+The system addresses a real-world operational challenge: **petrol pump operators often run low on stock unexpectedly**, resulting in lost sales and customer dissatisfaction. PetroPredict solves this by:
 
 - 📊 **Analysing** historical daily sales, stock levels, and payment trends
 - 🤖 **Predicting** the next refill date with up to **100% model accuracy**
@@ -73,15 +73,6 @@ soham/
 
 ## 🚀 Quick Start
 
-### 1. Clone the Repository
-
-```bash
-git clone <your-repo-url>
-cd soham
-```
-
-### 2. Set Up Python Environment
-
 ```bash
 python -m venv .venv
 # Windows
@@ -91,20 +82,12 @@ source .venv/bin/activate
 
 pip install -r Frontend/requirements.txt
 ```
-
-### 3. Launch the Dashboard
-
 ```bash
 cd Frontend
 streamlit run app.py
 ```
 
 Open your browser at **`http://localhost:8501`**.
-
-### 4. Load Data
-
-- Click **"⚡ Use Demo Data"** to instantly explore with the bundled dataset, or
-- Click **"Upload"** to drag-and-drop your own `.csv` or `.xlsx` petrol pump data file.
 
 ---
 
@@ -170,16 +153,6 @@ Raw Excel Data (2011–2025)
 | 4 | `Cash` | 2.4% |
 | 5 | `HSD1_Sold` | 2.2% |
 
----
-
-## 🎨 Design System
-
-FuelIQ ships with a **dual dark/light mode design system** built in vanilla CSS:
-
-- **Dark Mode**: Deep navy background (`#0E1117`) with amber accents (`#f59e0b`) and green highlights (`#22c55e`)
-- **Light Mode**: Clean white canvas with muted amber/green for contrast
-- **Typography**: Google Fonts `Inter` (weights 300–900)
-- **Components**: Stat cards, prediction cards, feature rows, metric cards, confidence bars — all theme-aware
 
 ---
 
@@ -199,7 +172,7 @@ FuelIQ ships with a **dual dark/light mode design system** built in vanilla CSS:
 
 ## 📄 PDF Report Export
 
-FuelIQ generates a downloadable **management-ready PDF report** containing:
+PetroPredict generates a downloadable **management-ready PDF report** containing:
 - Next refill date prediction with confidence score
 - Current stock level and days remaining
 - 15-day walk-forward stock simulation table
@@ -207,24 +180,6 @@ FuelIQ generates a downloadable **management-ready PDF report** containing:
 
 ---
 
-## 🔒 Version Control Notes
-
-The `.gitignore` is configured to:
-- **Exclude** large binary files: `*.pkl`, `*.csv`, `*.xlsx` (except key reference files)
-- **Include** model config JSONs: `model_features.json`, `model_metrics.json`, `selected_features.csv`, `petrol_pump_2011_2025.xlsx`
-- **Exclude** Python caches, Jupyter checkpoints, IDE folders, and secrets (`.env`)
-
----
-
-## 🤝 Contributing
-
-1. Fork the repository
-2. Create your feature branch: `git checkout -b feature/your-feature`
-3. Run notebooks in order (`01` → `05`) to reproduce the full ML pipeline
-4. Update the `Frontend/` dashboard if adding new analytics pages
-5. Submit a pull request with a clear description
-
----
 
 ## 📜 License
 
@@ -233,6 +188,3 @@ Built as a business analytics capstone project demonstrating end-to-end ML deplo
 
 ---
 
-<div align="center">
-Made with ❤️ · FuelIQ Business Analytics Platform
-</div>

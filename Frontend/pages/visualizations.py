@@ -1,5 +1,5 @@
 """
-FuelIQ — Visualizations Page (v5 — full-dataset accurate charts)
+PetroPredict — Visualizations Page (v5 — full-dataset accurate charts)
 """
 import streamlit as st
 import pandas as pd

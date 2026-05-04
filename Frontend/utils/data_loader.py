@@ -1,5 +1,5 @@
 """
-FuelIQ — Data loading utilities (v6 — FULL DATASET FIX)
+PetroPredict — Data loading utilities (v6 — FULL DATASET FIX)
 """
 
 import os, json, pickle, io

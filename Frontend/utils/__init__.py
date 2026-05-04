@@ -1,1 +1,1 @@
-# FuelIQ Dashboard — init
+# PetroPredict Dashboard — init

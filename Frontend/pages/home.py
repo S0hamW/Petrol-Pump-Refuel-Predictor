@@ -1,5 +1,5 @@
 """
-FuelIQ — Dashboard Home Page (v5 Clean)
+PetroPredict — Dashboard Home Page (v5 Clean)
 """
 import streamlit as st
 import pandas as pd
@@ -25,7 +25,7 @@ def render():
     <div class="page-header">
         <div class="page-icon">⛽</div>
         <div>
-            <div class="page-title">FuelIQ Dashboard</div>
+            <div class="page-title">PetroPredict Dashboard</div>
             <div class="page-sub">AI-powered petrol pump refuel predictor · Upload data to begin</div>
         </div>
     </div>

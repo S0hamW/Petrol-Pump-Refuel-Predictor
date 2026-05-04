@@ -1,5 +1,5 @@
 """
-FuelIQ — Model Insights Page (v5)
+PetroPredict — Model Insights Page (v5)
 """
 import streamlit as st
 import pandas as pd
@@ -33,7 +33,7 @@ def render():
     st.markdown(f"""
     <div class="fiq-card">
         <div style="font-size:0.86rem;color:{t['text_secondary']};line-height:1.8;">
-            FuelIQ uses a <b style="color:{t['accent']}">Random Forest Classifier</b> trained on
+            PetroPredict uses a <b style="color:{t['accent']}">Random Forest Classifier</b> trained on
             <b style="color:{t['text_primary']}">{len(df):,} records</b> of daily petrol pump data.
             It evaluates stock levels, temporal patterns, and lagged sales signals to predict whether
             a refill is required with high accuracy.<br>

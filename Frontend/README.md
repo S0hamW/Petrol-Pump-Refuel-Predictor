@@ -1,6 +1,6 @@
-# 🖥️ Frontend/ — FuelIQ Streamlit Business Analytics Dashboard
+# 🖥️ Frontend/ — PetroPredict Streamlit Business Analytics Dashboard
 
-This directory contains the complete **Streamlit web application** that serves as the primary user interface for the FuelIQ Business Analytics platform. It provides an interactive, data-driven dashboard for petrol pump operators to upload their operational data, view AI-generated refill predictions, explore historical analytics, and download management-ready reports.
+This directory contains the complete **Streamlit web application** that serves as the primary user interface for the PetroPredict Business Analytics platform. It provides an interactive, data-driven dashboard for petrol pump operators to upload their operational data, view AI-generated refill predictions, explore historical analytics, and download management-ready reports.
 
 ---
 
@@ -31,15 +31,9 @@ Frontend/
 
 ## 🚀 How to Run
 
-### Prerequisites
-
-- Python 3.10 or higher
-- A virtual environment (recommended)
-
 ### Setup
 
 ```bash
-# From the project root (soham/)
 python -m venv .venv
 
 # Activate (Windows)
@@ -82,18 +76,6 @@ pip install -r requirements.txt
 
 ---
 
-## 🗂️ Application Entry Point — `app.py`
-
-**`app.py`** is the main router. It is responsible for:
-
-1. **Page Configuration** — Sets the Streamlit page title (`FuelIQ Dashboard`), icon (⛽), wide layout, and expanded sidebar using `st.set_page_config()` (must be the absolute first Streamlit call).
-2. **Theme Bootstrap** — Calls `apply_theme()` from `utils/theme.py` to inject CSS into the page based on the current dark/light mode stored in `st.session_state`.
-3. **Sidebar Navigation** — Renders the branded sidebar with two navigation groups:
-   - **MAIN**: Dashboard, Data Overview
-   - **ANALYSIS**: Feature Engineering, Visualizations, Model Insights
-4. **Data Status Banner** — Displays a ✅ `DATA READY` or ⚠️ `NO DATA LOADED` badge in the sidebar based on whether `st.session_state.df` is set.
-5. **Page Router** — Routes to the correct page module's `render()` function based on `st.session_state.current_page`.
-
 ### Navigation Flow
 
 ```
@@ -105,18 +87,6 @@ app.py
   ├── Sidebar Button: "Visualizations"     → pages/visualizations.py:render()
   └── Sidebar Button: "Model Insights"     → pages/model_insights.py:render()
 ```
-
-### Session State Keys
-
-| Key | Type | Description |
-|---|---|---|
-| `dark_mode` | `bool` | True = dark theme (default), False = light |
-| `current_page` | `str` | Name of the active dashboard page |
-| `df` | `pd.DataFrame` | The loaded petrol pump dataset (None until loaded) |
-| `data_source` | `str` | `"demo"` or `"upload"` |
-| `uploaded_filename` | `str` | Name of the user-uploaded file |
-| `_last_file_key` | `str` | Cache key to prevent re-parsing the same file |
-
 ---
 
 ## 📄 Pages
@@ -209,23 +179,6 @@ Full ML model explainability and performance audit page.
 
 ## 🛠️ Utilities
 
-### `utils/data_loader.py`
-
-The backbone of all data operations. Key functions:
-
-| Function | Cache | Description |
-|---|---|---|
-| `load_demo_data()` | `@st.cache_data` | Loads the bundled dataset from `/data`; picks source with most rows |
-| `load_uploaded_data(bytes, name)` | `@st.cache_data` | Parses user-uploaded CSV/XLSX; combines all sheets |
-| `load_model()` | `@st.cache_resource` | Loads `final_model.pkl` once per session |
-| `load_metrics()` | `@st.cache_data` | Reads `model_metrics.json` |
-| `load_features()` | `@st.cache_data` | Reads `model_features.json` |
-| `load_selected_features()` | `@st.cache_data` | Reads `selected_features.csv` with correlation enrichment |
-| `predict_refill(df, model, features, adj)` | — | Walk-forward 30-day simulation; returns prediction dict |
-| `simulate_forward(df, adj, n_days)` | — | 15-day walk-forward table for PDF and sim pages |
-| `_normalise(df)` | — | Adds all 19 engineered features to any raw DataFrame |
-| `_read_excel_all_sheets(path)` | — | Reads + concatenates all Excel sheets; deduplicates |
-| `_generate_synthetic_data()` | — | Fallback: generates 365 rows of synthetic pump data |
 
 **Walk-Forward Prediction Logic (`predict_refill`):**
 1. Starts from the **last row** of the loaded dataset as the seed state.
@@ -240,71 +193,11 @@ The backbone of all data operations. Key functions:
 
 ---
 
-### `utils/chart_helpers.py`
-
-A Plotly chart factory with 25+ chart-generating functions, all theme-aware (dark/light). Key charts:
-
-| Function | Chart Type | Used In |
-|---|---|---|
-| `drawdown_chart(df, dark, pred)` | Line + area | Home — Stock Forecast |
-| `rolling_sales_chart(df, dark)` | Line | Home — 7-Day Rolling Sales |
-| `roc_curve_chart(dark)` | Line | Model Insights — ROC Curve |
-| `confusion_matrix_chart(dark)` | Annotated Heatmap | Model Insights — Confusion Matrix |
-| `feature_importance_chart(feat_df, dark)` | Horizontal Bar | Feature Engineering |
-| `sales_by_day_chart(df, dark)` | Bar | Visualizations |
-| `seasonal_chart(df, dark)` | Line | Visualizations |
-| `yearly_growth_chart(df, dark)` | Bar | Visualizations |
-| `refill_heatmap(df, dark)` | Heatmap | Visualizations |
-| `sales_distribution_chart(df, dark)` | Histogram | Visualizations |
-
-All charts use the theme's `plot_paper`, `plot_bg`, `grid_color`, and `template` tokens for consistent rendering.
-
----
-
-### `utils/theme.py`
-
-The FuelIQ design system — a complete dual-mode (dark/light) CSS framework injected via `st.markdown(..., unsafe_allow_html=True)`.
-
-**Theme Tokens:**
-
-| Token | Dark Value | Light Value | Used For |
-|---|---|---|---|
-| `bg` | `#0E1117` | `#f4f6fb` | Page background |
-| `sidebar_bg` | `#0a0d13` | `#ffffff` | Sidebar background |
-| `card_bg` | `#161b27` | `#ffffff` | Card backgrounds |
-| `accent` | `#f59e0b` | `#d97706` | Amber — primary highlight |
-| `accent2` | `#22c55e` | `#16a34a` | Green — positive signals |
-| `accent3` | `#6366f1` | `#4f46e5` | Indigo — secondary accent |
-| `danger` | `#ef4444` | `#dc2626` | Low stock / critical alerts |
-| `warning` | `#f97316` | `#ea580c` | Mid-level warnings |
-| `success` | `#22c55e` | `#16a34a` | Positive indicators |
-| `text_primary` | `#e8eaf0` | `#0f172a` | Body text |
-| `text_secondary` | `#6b7a99` | `#64748b` | Labels, subtitles |
-
-**CSS Components defined:**
-- `.stat-card`, `.stat-row` — KPI metric cards with hover lift effect
-- `.pred-card`, `.pred-grid` — AI prediction card layout
-- `.conf-bar-track`, `.conf-bar-fill` — Confidence progress bar
-- `.fiq-card`, `.fiq-card-header` — Generic info cards
-- `.feat-row`, `.feat-name`, `.feat-formula` — Feature catalogue rows
-- `.metric-card`, `.metric-value` — Model metrics cards
-- `.no-data-wrap`, `.no-data-badge` — Empty state UI
-- `.brand-wrap`, `.nav-label` — Sidebar branding
-- Native Streamlit component overrides (buttons, file uploader, sliders, expanders, tabs, dataframes)
-
-**Exported Functions:**
-- `get_theme(dark: bool) -> dict` — Returns the active theme token dict
-- `apply_theme(dark: bool)` — Injects the full CSS stylesheet
-- `theme_toggle()` — Renders the dark/light toggle button
-- `no_data_state(page_name, icon)` — Renders the standard empty-state placeholder
-
----
-
 ### `utils/pdf_report.py`
 
 Generates a formatted **management PDF report** using the FPDF2 library. The report includes:
 
-- FuelIQ branding header
+- PetroPredict branding header
 - Next predicted refill date and confidence score
 - Current stock status with visual indicators
 - Days remaining until refill
@@ -315,44 +208,3 @@ Generates a formatted **management PDF report** using the FPDF2 library. The rep
 
 ---
 
-## 🎨 Design Principles
-
-1. **No Data = Graceful Degradation** — Every page calls `no_data_state()` if `st.session_state.df` is `None`, guiding users back to the Dashboard to upload data.
-2. **Session State as Single Source of Truth** — The DataFrame (`df`), theme preference, and navigation state all live in `st.session_state`, ensuring consistent state across page switches without re-loading data.
-3. **Caching Strategy** — `@st.cache_data` for data and metrics, `@st.cache_resource` for the model (loaded once per process lifetime). File-upload cache is cleared on each new upload via `load_uploaded_data.clear()`.
-4. **Theme Consistency** — All HTML/CSS injected via `unsafe_allow_html=True` uses dynamic f-string interpolation of theme token values, ensuring charts and custom HTML components always match the current dark/light mode.
-5. **Multi-Sheet Excel Safety** — The app never silently loads partial data. A warning is displayed if fewer than 500 rows are loaded, prompting the user to check their file.
-
----
-
-## ✅ Supported Data Formats
-
-| Format | Extension | Notes |
-|---|---|---|
-| CSV | `.csv` | Standard UTF-8 CSV; Date column auto-detected |
-| Excel 2007+ | `.xlsx` | Multi-sheet — all sheets are merged |
-| Excel Legacy | `.xls` | Supported via openpyxl |
-| Excel Macro | `.xlsm` | Supported |
-
-**Required Columns** (at minimum):
-
-| Column | Aliases Accepted |
-|---|---|
-| `Date` | `date`, `DATE`, `Dates` |
-| `Opening_Stock` | — |
-| `Total_Sold` | `TotalSold`, `TotalSales`, `Sales` |
-| `Refill_Required` | `Refill` (mapped to `Target`) |
-
-All other columns are derived automatically by `_normalise()` if missing.
-
----
-
-## 🐛 Troubleshooting
-
-| Issue | Likely Cause | Fix |
-|---|---|---|
-| Only N rows loaded | Excel file has data on multiple sheets without a `Date` column | Ensure all sheets have a `Date` column |
-| Model not loading | `final_model.pkl` missing from `/data` | Run `04_model_training.ipynb` to regenerate |
-| "Prediction error" toast | A feature column missing after normalisation | Check your data has `Opening_Stock`, `Total_Sold`, and `Refill_Required` |
-| Charts look washed out | Theme not applied (e.g., partial load) | Refresh the browser tab |
-| File re-uploads ignored | Stale cache key | Click "Use Demo Data" once, then re-upload |

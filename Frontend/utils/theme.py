@@ -1,5 +1,5 @@
 """
-FuelIQ Theme System — v5 (Dark, solid colors, no gradients on cards)
+PetroPredict Theme System — v5 (Dark, solid colors, no gradients on cards)
 """
 import streamlit as st
 
